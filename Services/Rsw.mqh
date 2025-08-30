@@ -111,8 +111,9 @@ class Rsw
                RswPair p = RswPairs[i];
                SymbolSelect(p.Pair, true); // Ensure the symbol exists in market watch
                
-               double ema4 = HELPER.GetEmaPrice(p.Pair, 150);
-               double price = HELPER.GetAskPrice(p.Pair);
+               Helpers helper = HELPER;
+               double ema4 = helper.GetEmaPrice(p.Pair, 150);
+               double price = helper.GetAskPrice(p.Pair);
                
                RswCurrency* leftCurrency = GetCurrency(p.LeftCurrency);
                RswCurrency* rightCurrency = GetCurrency(p.RightCurrency);
@@ -292,9 +293,9 @@ class Rsw
        }
 
       
-       //+--------------------------------------
-       //| On Timer
-       //+--------------------------------------
+      //+--------------------------------------
+      //| On Timer
+      //+--------------------------------------
       void OnTimer()
       {  
          ReCountAfterSecond++;
