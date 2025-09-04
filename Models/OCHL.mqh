@@ -7,7 +7,8 @@ class OCHL
          double High;
          double Low;
          double Close;
-         Emas Emas;
+         Emas* Emas;
          bool Expected;
          datetime OpenTime;
+         
   };

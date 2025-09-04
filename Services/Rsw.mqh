@@ -118,11 +118,6 @@ class Rsw
                RswCurrency* leftCurrency = GetCurrency(p.LeftCurrency);
                RswCurrency* rightCurrency = GetCurrency(p.RightCurrency);
                
-               if(leftCurrency == NULL || rightCurrency == NULL)
-               {
-                  Print("Ada yang Null ", p.Pair);
-               }
-               
                if(price > ema4)
                {
                   leftCurrency.AddIndex(1);
@@ -242,6 +237,27 @@ class Rsw
          ReCountRSW();
       } 
       
+      
+      void Release()
+       {
+       
+         // Release RswPairs
+         for(int i=0; i<ArraySize(RswPairs); i++)
+         {
+            delete RswPairs[i];
+            RswPairs[i] = NULL;
+         }
+         ArrayResize(RswPairs, 0);
+      
+         // Release RswCurrencies
+         for(int i=0; i<ArraySize(RswCurrencies); i++)
+         {
+            delete RswCurrencies[i];
+            RswCurrencies[i] = NULL;
+         }
+         ArrayResize(RswCurrencies, 0);
+      
+       }
       
        //+--------------------------------------
        //| Get Strong Currencies
