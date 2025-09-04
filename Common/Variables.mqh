@@ -1,11 +1,12 @@
 #include "Helpers.mqh"
 #include "..\Services\Rsw.mqh"
 #include "..\Services\TrendService.mqh"
+#include "..\Services\ChartStatusService.mqh"
 
 //+------------------------------------------------------------------+
 //| Input Variables
 //+------------------------------------------------------------------+
-input int Magic_Number = 28091989;
+input int Magic_Number = 2809;
 input string Pair_Prefix = "";
 input string Pair_Separator = "";
 input string Pair_Suffix = "";
@@ -18,3 +19,4 @@ input ENUM_TIMEFRAMES TradingTimeFrame = PERIOD_H1;
 static Rsw* RSW ;
 static Helpers* HELPER;
 static TrendService* TRENDSERVICE;
+static ChartStatus* CHARTSTATUS;

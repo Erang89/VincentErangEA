@@ -9,4 +9,5 @@ class OCHL
          double Close;
          Emas Emas;
          bool Expected;
+         datetime OpenTime;
   };
