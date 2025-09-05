@@ -12,6 +12,7 @@ enum Enum_Position_Recomendation
 
 enum Enum_PriceCodingState
   {
+      None,
       Trading,
       JustMakeNewHigh,
       JustMakeNewLow,
@@ -20,8 +21,7 @@ enum Enum_PriceCodingState
       PendigOrderOnEma20,
       PendigOrderOnEma50,
       PendigOrderOnEma100,
-      PendigOrderOnEma200,
-      None
+      PendigOrderOnEma200      
   };
 
 string PositionRecommendationToString(Enum_Position_Recomendation position)
@@ -33,6 +33,7 @@ string PositionRecommendationToString(Enum_Position_Recomendation position)
 string PriceCodingStateToString(Enum_PriceCodingState state)
 {
    string states[] = {
+      "None",
       "Trading",
       "JustMakeNewHigh",
       "JustMakeNewLow",
@@ -41,8 +42,7 @@ string PriceCodingStateToString(Enum_PriceCodingState state)
       "PendigOrderOnEma20",
       "PendigOrderOnEma50",
       "PendigOrderOnEma100",
-      "PendigOrderOnEma200",
-      "None"
+      "PendigOrderOnEma200"
   };
   
   return states[(int)state];

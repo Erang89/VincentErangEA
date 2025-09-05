@@ -8,6 +8,8 @@
 class TrendService
 {
    private:
+      Emas* createdEmas[];
+      
       Emas* GetEmas(Emas* &emas[], string pair)
       {
          int n = ArraySize(emas);
@@ -24,6 +26,11 @@ class TrendService
          int newIndex = ArraySize(emas);
          ArrayResize(emas, newIndex + 1);
          emas[newIndex] = newEma;         
+         
+         newIndex = ArraySize(createdEmas);
+         ArrayResize(createdEmas, newIndex + 1);
+         createdEmas[newIndex] = newEma;
+         
          return newEma;
       }
          
@@ -56,6 +63,16 @@ class TrendService
                   (pair.RecommendPosition == Sell && ema.Ema20 < ema.Ema50 && ema.Ema50 < ema.Ema100 && ema.Ema100 < ema.Ema200);
        }
        
+       
+       void Release()
+       {
+         for(int i=0; i< ArraySize(createdEmas);i++)
+         {
+            delete createdEmas[i];
+            createdEmas[i] = NULL;
+         }
+         ArrayResize(createdEmas, 0);
+       }
        
       //+--------------------------------------
       //| On Timer

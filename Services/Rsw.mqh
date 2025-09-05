@@ -131,16 +131,14 @@ class Rsw
           
           BubbleSort(RswCurrencies);
           
-          SetRecommends();
-          
-          Print("Last Calculate Pair Ranking on Local Time : ", TimeToString(TimeLocal()));
+          SetRecommendStatus();
       }
       
        //+------------------------------------------
        //| Reset Recommend Position for Each Pairs
        //| Base on Currency Ranking
        //+------------------------------------------
-       void SetRecommends()
+       void SetRecommendStatus()
        {
          RswCurrency* strongCurrs[];
          RswCurrency* weakCurrs[];
@@ -237,7 +235,9 @@ class Rsw
          ReCountRSW();
       } 
       
-      
+      //+--------------------------------------
+       //| Release the objects
+       //+--------------------------------------
       void Release()
        {
        
@@ -296,9 +296,6 @@ class Rsw
          for(int i=0; i<n; i++)
          {
             RswPair* p = RswPairs[i];
-            
-            //Print("Arr C : ", p.Pair, " ", p.RecommendPosition);
-            
             if(RswPairs[i].RecommendPosition != NotRecommend)
             {
                int newIndex = ArraySize(pairs);
