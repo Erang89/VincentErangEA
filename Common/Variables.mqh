@@ -18,6 +18,7 @@ input double SL_Daily_ATR_Percentage = 50.0;
 input double Risk_Percent_PerTrade = 0.5;
 input double Trade_Lot_Size = 0.01;
 input double Minimum_TP_Point = 30;
+input bool Required_RSW = true;
 
 //+------------------------------------------------------------------+
 //| GLOBAL VARIABLES                                                          |

@@ -221,6 +221,9 @@ class Rsw
        
       Rsw()
       {
+         if(!Required_RSW)
+            return;
+            
          if(Clear_Market_Watch_When_Init)
          {
             int total = SymbolsTotal(false);
@@ -324,6 +327,21 @@ class Rsw
          }
        }
 
+      //+--------------------------------------
+       //| Get Recommended Pair
+       //+--------------------------------------
+       void GetAllPairs(RswPair* &pairs[])
+       {
+         ArrayFree(pairs);
+         int n = ArraySize(RswPairs);
+         for(int i=0; i<n; i++)
+         {
+            RswPair* p = RswPairs[i];
+            int newIndex = ArraySize(pairs);
+            ArrayResize(pairs, newIndex + 1);
+            pairs[newIndex] = RswPairs[i];
+         }
+       }
       
       //+--------------------------------------
       //| On Timer
@@ -334,7 +352,7 @@ class Rsw
          
          if(FirstCount || ReCountAfterSecond == 300)
          {
-            ReCountRSW();
+               ReCountRSW();
          }
          
          if(ReCountAfterSecond == 300)

@@ -16,7 +16,6 @@ class TrendService
          int n = ArraySize(emas);
          for(int i=0; i<n; i++)
          {
-            Print("Access Ema --> Total: ", ArraySize(emas), " Iteration: ", i);
             if(emas[i] != NULL && pair == emas[i].Pair)
             {
                return emas[i];
