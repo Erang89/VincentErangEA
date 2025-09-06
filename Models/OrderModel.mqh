@@ -5,4 +5,7 @@ struct OrderModel
    double TP;
    ENUM_ORDER_TYPE OrderType;
    string OrderSymbol;
+   int MagicNumber;
+   string OrderComment;
+   double LotSize;
 };

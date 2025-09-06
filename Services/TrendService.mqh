@@ -9,13 +9,15 @@ class TrendService
 {
    private:
       Emas* createdEmas[];
+      Emas* emas[];
       
-      Emas* GetEmas(Emas* &emas[], string pair)
+      Emas* GetEmas(string pair)
       {
          int n = ArraySize(emas);
          for(int i=0; i<n; i++)
          {
-            if(pair == emas[i].Pair)
+            Print("Access Ema --> Total: ", ArraySize(emas), " Iteration: ", i);
+            if(emas[i] != NULL && pair == emas[i].Pair)
             {
                return emas[i];
             }
@@ -44,9 +46,8 @@ class TrendService
       //+--------------------------------------
        bool IsValidTrend(RswPair* &pair, Emas* &ema)
        {
-         static Emas* emas[];
          static bool hasInitCheck;
-         ema = GetEmas(emas, pair.Pair);
+         ema = GetEmas(pair.Pair);
          
          if(!hasInitCheck || ema.LastTimeCheck != iTime(pair.Pair, TradingTimeFrame, 1))
          {
@@ -78,6 +79,13 @@ class TrendService
             createdEmas[i] = NULL;
          }
          ArrayResize(createdEmas, 0);
+         
+         for(int i=0; i< ArraySize(emas);i++)
+         {
+            delete emas[i];
+            emas[i] = NULL;
+         }
+         ArrayResize(emas, 0);
        }
        
       //+--------------------------------------

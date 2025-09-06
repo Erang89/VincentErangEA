@@ -93,7 +93,10 @@ class TradeService
          if(HELPER.DiffPoints(emas.Ema20, emas.Ema50) < Minimum_TP_Point)
             return false;
          
-         OrderModel order;
+         OrderModel order;         
+         order.MagicNumber = Magic_Number;
+         order.OrderComment = "Ema20";
+         order.LotSize = Trade_Lot_Size;
          order.OrderSymbol = _Symbol;
          order.OrderType = rsw.RecommendPosition == Buy? ORDER_TYPE_BUY_LIMIT : ORDER_TYPE_SELL_LIMIT;
          
@@ -108,7 +111,7 @@ class TradeService
                      order.Entry - dailyAtr * SL_Daily_ATR_Percentage : 
                      order.Entry + dailyAtr * SL_Daily_ATR_Percentage;
          
-         return HELPER.LimitOrder(order, Risk_Percent_PerTrade, Magic_Number);
+         return HELPER.LimitOrder(order);
       }
       
       
@@ -127,6 +130,9 @@ class TradeService
             return false;
          
          OrderModel order;
+         order.MagicNumber = Magic_Number;
+         order.OrderComment = "Ema50";
+         order.LotSize = Trade_Lot_Size;
          order.OrderSymbol = _Symbol;
          order.OrderType = rsw.RecommendPosition == Buy? ORDER_TYPE_BUY_LIMIT : ORDER_TYPE_SELL_LIMIT;
          
@@ -141,7 +147,7 @@ class TradeService
                      order.Entry - dailyAtr * SL_Daily_ATR_Percentage : 
                      order.Entry + dailyAtr * SL_Daily_ATR_Percentage;
          
-         return HELPER.LimitOrder(order, Risk_Percent_PerTrade, Magic_Number);
+         return HELPER.LimitOrder(order);
       }
       
       
@@ -160,6 +166,9 @@ class TradeService
             return false;
          
          OrderModel order;
+         order.MagicNumber = Magic_Number;
+         order.OrderComment = "Ema100";
+         order.LotSize = Trade_Lot_Size;
          order.OrderSymbol = _Symbol;
          order.OrderType = rsw.RecommendPosition == Buy? ORDER_TYPE_BUY_LIMIT : ORDER_TYPE_SELL_LIMIT;
          
@@ -174,7 +183,7 @@ class TradeService
                      order.Entry - dailyAtr * SL_Daily_ATR_Percentage : 
                      order.Entry + dailyAtr * SL_Daily_ATR_Percentage;
          
-         return HELPER.LimitOrder(order, Risk_Percent_PerTrade, Magic_Number);
+         return HELPER.LimitOrder(order);
       }
       
       
@@ -192,7 +201,10 @@ class TradeService
          if(HELPER.DiffPoints(emas.Ema200, emas.Ema50) < Minimum_TP_Point)
             return false;
          
-         OrderModel order;
+         OrderModel order;         
+         order.MagicNumber = Magic_Number;
+         order.OrderComment = "Ema200";
+         order.LotSize = Trade_Lot_Size;
          order.OrderSymbol = _Symbol;
          order.OrderType = rsw.RecommendPosition == Buy? ORDER_TYPE_BUY_LIMIT : ORDER_TYPE_SELL_LIMIT;
          
@@ -207,8 +219,11 @@ class TradeService
                      order.Entry - dailyAtr * SL_Daily_ATR_Percentage : 
                      order.Entry + dailyAtr * SL_Daily_ATR_Percentage;
          
-         return HELPER.LimitOrder(order, Risk_Percent_PerTrade, Magic_Number);
+         return HELPER.LimitOrder(order);
       }
+      
+      
+      
  
  
    //+--------------------------------------
