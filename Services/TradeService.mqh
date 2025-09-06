@@ -11,6 +11,7 @@ class TradeService
       RswPair* rsw;
       Emas* emas;
       Enum_PriceCodingState chartState;
+      RswPair* CurrentChartPair;
  
       //+--------------------------------------
       //| Check if pair is recommended or not
@@ -18,9 +19,13 @@ class TradeService
       //+--------------------------------------
       
       bool IsPairRecommended(RswPair* &rswPair)
-      {
-         if(MQLInfoInteger(MQL_TESTER))
+      {   
+          if(MQLInfoInteger(MQL_TESTER) || !RSW.IsForexPair(_Symbol))
+          {
+            CurrentChartPair = CurrentChartPair != NULL? CurrentChartPair : new RswPair(_Symbol);
+            rswPair = CurrentChartPair;
             return true;
+          }
           
           RswPair* rswPairs[];
           RSW.GetRecommendedPair(rswPairs);
@@ -106,6 +111,10 @@ class TradeService
          return HELPER.LimitOrder(order, Risk_Percent_PerTrade, Magic_Number);
       }
       
+      
+      //+--------------------------------------
+      //| Open Position For Ema50
+      //+--------------------------------------
       bool OpenPoisitionForEma50()
       {
          if(!(chartState == PendigOrderOnEma20 || chartState == PendigOrderOnEma50))
@@ -136,6 +145,9 @@ class TradeService
       }
       
       
+      //+--------------------------------------
+      //| Open Position For Ema100
+      //+--------------------------------------
       bool OpenPoisitionForEma100()
       {
          if(!(chartState == PendigOrderOnEma20 || chartState == PendigOrderOnEma50 || chartState == PendigOrderOnEma100))
@@ -165,6 +177,10 @@ class TradeService
          return HELPER.LimitOrder(order, Risk_Percent_PerTrade, Magic_Number);
       }
       
+      
+      //+--------------------------------------
+      //| Open Position For Ema200
+      //+--------------------------------------
       bool OpenPoisitionForEma200()
       {
          if(!(chartState == PendigOrderOnEma20 || chartState == PendigOrderOnEma50 || chartState == PendigOrderOnEma100 || chartState == PendigOrderOnEma200))
@@ -252,5 +268,11 @@ class TradeService
          delete rsw;
          emas = NULL;
          rsw = NULL;
+         
+         if(CurrentChartPair != NULL)
+         {
+            delete CurrentChartPair;
+            CurrentChartPair = NULL;
+         }
       }
 };

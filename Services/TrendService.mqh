@@ -59,6 +59,12 @@ class TrendService
             ema.Ema200 = helper.GetEmaPrice(pair.Pair, 200, TradingTimeFrame);
          }
          
+         pair.RecommendPosition = pair.RecommendPosition != Enum_Position_Recomendation_Null || pair.RecommendPosition != NULL? pair.RecommendPosition :   
+                                    (ema.Ema20 > ema.Ema50 && ema.Ema50 > ema.Ema100 && ema.Ema100 > ema.Ema200)? Buy :
+                                    (ema.Ema20 < ema.Ema50 && ema.Ema50 < ema.Ema100 && ema.Ema100 < ema.Ema200)? Sell :
+                                    NotRecommend;
+               
+         
          return   (pair.RecommendPosition == Buy && ema.Ema20 > ema.Ema50 && ema.Ema50 > ema.Ema100 && ema.Ema100 > ema.Ema200) || 
                   (pair.RecommendPosition == Sell && ema.Ema20 < ema.Ema50 && ema.Ema50 < ema.Ema100 && ema.Ema100 < ema.Ema200);
        }

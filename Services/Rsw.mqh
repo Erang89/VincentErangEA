@@ -235,9 +235,28 @@ class Rsw
          ReCountRSW();
       } 
       
+      
       //+--------------------------------------
-       //| Release the objects
-       //+--------------------------------------
+      //| Check if pair is forex pair
+      //+--------------------------------------
+      bool IsForexPair(string pair)
+      {
+         for(int i=0; i<ArraySize(RswPairs); i++)
+         {
+            if(pair == RswPairs[i].Pair)
+            {
+               return true;
+               break;
+            }
+         }
+         
+         return false;
+      }
+      
+      
+      //+--------------------------------------
+      //| Release the objects
+      //+--------------------------------------
       void Release()
        {
        

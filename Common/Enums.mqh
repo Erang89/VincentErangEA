@@ -4,6 +4,7 @@
 //+------------------------------------------------------------------+
 enum Enum_Position_Recomendation
 {
+   Enum_Position_Recomendation_Null,
    Buy,
    Sell,
    NotRecommend
@@ -26,7 +27,7 @@ enum Enum_PriceCodingState
 
 string PositionRecommendationToString(Enum_Position_Recomendation position)
 {
-   string positions[] = {"BUY", "SELL", "N/A"};
+   string positions[] = {"None", "BUY", "SELL", "N/A"};
    return positions[(int)position];
 }
 
